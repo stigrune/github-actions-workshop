@@ -1,0 +1,29 @@
+name: Task 3 - Creating a workflow Chuck Norris would be proud of
+
+on:
+  workflow_dispatch:
+
+jobs: 
+  task3:
+    name: Task 3
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Fetch quote
+        uses: fjogeleit/http-request-action@v1
+        id: getQuoteResponse
+        with:
+          url: 'https://api.chucknorris.io/jokes/random'
+          method: 'GET'
+      - name: Show Response
+        id: quote
+        run: |
+          echo "::set-output name=QUOTE::${{ fromJson(steps.getQuoteResponse.outputs.response).value }}"
+      - name: Deploy Stage
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://chuck.alexc.no/api/quote'
+          method: 'POST'
+          username: ${{ secrets.AWX_USER }}
+          password: ${{ secrets.AWX_PASSWORD }}
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{ "quote": "${{ steps.step1.outputs.QUOTE }}", "accessCode": "${{ secrets.token }}" }'
