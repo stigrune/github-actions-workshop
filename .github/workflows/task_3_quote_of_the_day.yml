@@ -26,4 +26,4 @@ jobs:
           username: ${{ secrets.AWX_USER }}
           password: ${{ secrets.AWX_PASSWORD }}
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{ "quote": "${{ steps.step1.outputs.QUOTE }}", "accessCode": "${{ secrets.token }}" }'
+          data: '{ "quote": "${{ steps.quote.outputs.QUOTE }}", "accessCode": "${{ secrets.token }}" }'
