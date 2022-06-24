@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./copy-pasta-app
+        working-directory: ./example-app
     steps:
       - name: Setup node
         uses: actions/setup-node@v3
