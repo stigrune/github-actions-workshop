@@ -55,4 +55,4 @@ jobs:
           node-version: 16
       - run: npm install
       - run: npx playwright install
-      - run: npm build
+      - run: npm run build
