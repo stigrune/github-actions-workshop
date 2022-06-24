@@ -1,5 +1,10 @@
 name: Task 1 - Fix the broken workflow
 
+on:
+  push:
+    branches:
+      - 'main'
+
 jobs:
   task1:
     name: Task 1 - Fix the broken workflow
