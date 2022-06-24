@@ -1,0 +1,58 @@
+name: Task 2
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  task1:
+    name: Task 1 - Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./example-app
+    steps:
+      - name: co
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run lint
+      - run: npx playwright install
+      - run: npm test
+      - run: npm run build
+  task2:
+    name: Task 2 - Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./example-app
+    steps:
+      - name: co
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npx playwright install
+      - run: npm test
+  task3:
+    name: Task 3 - Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./example-app
+    steps:
+      - name: co
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npx playwright install
+      - run: npm build
